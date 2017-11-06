@@ -2,9 +2,14 @@ package com.shurik.company;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 
 public class Main {
 
@@ -33,6 +38,40 @@ public class Main {
         }
 
         // ==========================
+
+        JSONParser  parser  = new JSONParser();
+
+        try {
+
+            JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("test.json"));
+
+            String name = (String) jsonObject.get("name");
+            long age    = (Long) jsonObject.get("age");
+
+            System.out.println("name = " + name);
+            System.out.println("age = " + age);
+
+            JSONArray   jsonArray   = (JSONArray) jsonObject.get("mass");
+
+            System.out.println("mas = " + jsonArray);
+
+//            for (elem : jsonArray) {
+//
+//            }
+
+            //Iterator<String> iterator jsonArray;
+
+
+
+
+
+        } catch (FileNotFoundException fe){
+            fe.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (ParseException pe){
+            pe.printStackTrace();
+        }
 
     }
 }
